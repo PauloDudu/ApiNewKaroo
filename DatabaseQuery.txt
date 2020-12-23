@@ -1,0 +1,23 @@
+insert into destaque 
+	(descricao, link) values 
+		('Departamento Pessoal - Base de Conhecimento > Tudo que você precisa saber sobre o lançamento de Maternidade', 'https://ajuda.alterdata.com.br/dpbase/tudo-que-voce-precisa-saber-sobre-o-lancamento-de-maternidade-66847798.html'),
+		('Departamento Pessoal - Base de Conhecimento > Cópia de .eSocial - Tudo que você precisa saber sobre lotação tributária v1.00', 'https://ajuda.alterdata.com.br/dpbase/tudo-que-voce-precisa-saber-sobre-o-lancamento-de-beneficio-65720705.html'),
+		('Departamento Pessoal - Base de Conhecimento > Tudo que você precisa saber sobre o lançamento de SAT', 'https://ajuda.alterdata.com.br/dpbase/tudo-que-voce-precisa-saber-sobre-o-lancamento-de-sat-66847559.html'),
+		('Departamento Pessoal - Base de Conhecimento > Tudo que você precisa saber sobre a CTPS Digital', 'https://ajuda.alterdata.com.br/dpbase/tudo-que-voce-precisa-saber-sobre-a-ctps-digital-85604273.html'),
+		('Departamento Pessoal - Base de Conhecimento > Pack Up - Tudo que você precisa saber para utilizar o Pack UP', 'https://ajuda.alterdata.com.br/dpbase/pack-up-tudo-que-voce-precisa-saber-para-utilizar-o-pack-up-91767368.html'),
+		('Departamento Pessoal - Base de Conhecimento > eSocial - Tudo que você precisa saber para envio da 3ª fase do eSocial', 'https://ajuda.alterdata.com.br/dpbase/esocial-tudo-que-voce-precisa-saber-para-envio-da-3-fase-do-esocial-63578816.html'),
+		('Departamento Pessoal - Base de Conhecimento > Tudo que você precisa saber sobre rubrica informativa de vale transporte','https://ajuda.alterdata.com.br/dpbase/esocial-como-criar-uma-rubrica-informativa-para-vale-transporte-69571013.html'),
+		('Departamento Pessoal - Base de Conhecimento > eSocial - Tudo que você precisa saber para envio da 1ª fase do eSocial','https://ajuda.alterdata.com.br/dpbase/esocial-tudo-que-voce-precisa-saber-para-envio-da-1-fase-do-esocial-60479789.html'),
+		('Departamento Pessoal - Base de Conhecimento > eSocial - Tudo que você precisa saber para envio da 2ª fase do eSocial','https://ajuda.alterdata.com.br/dpbase/esocial-tudo-que-voce-precisa-saber-para-envio-da-2-fase-do-esocial-65705529.html');
+
+insert into funcionario 
+	(email, nome, senha) values 
+		('dudu.dsn.pack','Paulo Eduardo Lucas Ferreira','123123'),
+		('cicero.neki','Cicero Romao Mangueira','123123'),
+		('guihenrique.dsn.pack','Guilherme Henrique','12313');
+
+select * from destaque;
+select * from funcionario;
+
+drop table destaque;
+drop table funcionario;
