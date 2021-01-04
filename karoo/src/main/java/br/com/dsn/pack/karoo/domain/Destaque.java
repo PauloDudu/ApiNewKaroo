@@ -30,12 +30,12 @@ public class Destaque implements Serializable {
 		this.id = id;
 	}
 
-	public String getDescircao() {
+	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescircao(String descircao) {
-		this.descricao = descircao;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public String getLink() {
