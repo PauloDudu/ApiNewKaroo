@@ -32,13 +32,13 @@ public class FuncionarioController {
 	FuncionarioService funcionarioService;
 	
 	@GetMapping("/funcionarios")
-	@ApiOperation(value="Retorna uma lista de usuarios")
+	@ApiOperation(value="Retorna uma lista de funcionarios")
 	public ResponseEntity<List<Funcionario>> listUsers() throws FuncionarioNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.getAll());
 	}
 	
 	@GetMapping("/funcionarios/{id}")
-	@ApiOperation(value="Retorna um usuario pelo id passado na rota")
+	@ApiOperation(value="Retorna um funcionario pelo id passado na rota")
 	public ResponseEntity<Funcionario> getById(@PathVariable(value="id") long id) throws FuncionarioNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.getById(id));
 	}
@@ -50,13 +50,13 @@ public class FuncionarioController {
 	}
 	
 	@DeleteMapping("/funcionarios/{id}")
-	@ApiOperation(value="Deleta um usuario da lista")
+	@ApiOperation(value="Deleta um funcionario da lista")
 	public void deleteUser(@PathVariable(value="id") long id) throws FuncionarioNotFoundException {
 		funcionarioService.deleteFuncionario(id);
 	}
 	
 	@PutMapping("/funcionarios")
-	@ApiOperation(value="Atualiza um usuario")
+	@ApiOperation(value="Atualiza um funcionario")
 	public ResponseEntity<Funcionario> updateUser(@RequestBody Funcionario funcionario) throws FuncionarioNotValidException {
 		return ResponseEntity.ok(funcionarioService.updateFuncionario(funcionario));
 	}

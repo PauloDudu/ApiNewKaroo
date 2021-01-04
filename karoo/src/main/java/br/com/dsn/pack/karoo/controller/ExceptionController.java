@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import br.com.dsn.pack.karoo.exceptions.AssuntoNotFoundException;
+import br.com.dsn.pack.karoo.exceptions.AssuntoNotValidException;
 import br.com.dsn.pack.karoo.exceptions.DestaqueNotFoundException;
 import br.com.dsn.pack.karoo.exceptions.DestaqueNotValidException;
 import br.com.dsn.pack.karoo.exceptions.FuncionarioNotFoundException;
@@ -61,5 +63,27 @@ public class ExceptionController {
 				.header(K_KAROOERRO_VALUE, exception.getId().toString())
 				.body(msg);
 
+	}
+	
+	@ExceptionHandler(AssuntoNotFoundException.class)
+	public ResponseEntity<String> tratarFuncionarioNotFound(AssuntoNotFoundException exception) {
+		String msg = "Assunto nao encontrado!";
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.header(K_KAROOERRO_MSG, msg)
+				.header(K_KAROOERRO_CODE, "ASSUNTO_NOT_FOUND")
+				.header(K_KAROOERRO_VALUE, exception.getId().toString())
+				.body(msg);
+	}
+	
+	@ExceptionHandler(AssuntoNotValidException.class)
+	public ResponseEntity<String> tratarFuncionarioNotFound(AssuntoNotValidException exception) {
+		String msg = "Assunto nao encontrado!";
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.header(K_KAROOERRO_MSG, msg)
+				.header(K_KAROOERRO_CODE, "ASSUNTO_NOT_VALID")
+				.header(K_KAROOERRO_VALUE, exception.getId().toString())
+				.body(msg);
 	}
 }

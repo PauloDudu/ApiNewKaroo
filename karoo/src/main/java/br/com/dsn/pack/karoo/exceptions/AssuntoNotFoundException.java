@@ -1,0 +1,20 @@
+package br.com.dsn.pack.karoo.exceptions;
+
+public class AssuntoNotFoundException extends Exception {
+
+	private static final long serialVersionUID = 1L;
+	private final Long id;
+
+	public AssuntoNotFoundException() {
+		this.id = (long) 0;
+	}
+
+	public AssuntoNotFoundException(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+}
