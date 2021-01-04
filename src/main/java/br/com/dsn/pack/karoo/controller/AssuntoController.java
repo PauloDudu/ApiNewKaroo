@@ -43,7 +43,7 @@ public class AssuntoController {
 		return ResponseEntity.status(HttpStatus.OK).body(assuntoService.getById(id));
 	}
 	
-	@PostMapping("/assunto")
+	@PostMapping("/assuntos")
 	@ApiOperation(value="Adiciona um assunto a lista")
 	public ResponseEntity<String> createUser(@RequestBody Assunto assunto) throws AssuntoNotValidException {
 		return ResponseEntity.status(HttpStatus.OK).body(assuntoService.addAssunto(assunto)); 
