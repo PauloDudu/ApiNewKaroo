@@ -18,6 +18,8 @@ insert into funcionario
 
 select * from destaque;
 select * from funcionario;
+select * from assunto;
 
 drop table destaque;
 drop table funcionario;
+drop table assunto;
