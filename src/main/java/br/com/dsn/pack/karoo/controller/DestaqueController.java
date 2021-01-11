@@ -32,31 +32,31 @@ public class DestaqueController {
 	DestaqueService destaqueService;
 	
 	@GetMapping("/destaques")
-	@ApiOperation(value="Retorna uma lista de usuarios")
+	@ApiOperation(value="Retorna uma lista de destaques")
 	public ResponseEntity<List<Destaque>> listDestaques() throws DestaqueNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getAll());
 	}
 	
 	@GetMapping("/destaques/{id}")
-	@ApiOperation(value="Retorna um usuario pelo id passado na rota")
+	@ApiOperation(value="Retorna um destaque pelo id passado na rota")
 	public ResponseEntity<Destaque> getById(@PathVariable(value="id") long id) throws DestaqueNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getById(id));
 	}
 	
 	@PostMapping("/destaques")
-	@ApiOperation(value="Adiciona um usuario a lista")
+	@ApiOperation(value="Adiciona um destaque a lista")
 	public ResponseEntity<?> createDestaque(@RequestBody Destaque destaque) throws DestaqueNotValidException {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.addDestaque(destaque)); 
 	}
 	
 	@DeleteMapping("/destaques/{id}")
-	@ApiOperation(value="Deleta um usuario da lista")
+	@ApiOperation(value="Deleta um destaque da lista")
 	public void deleteDestaque(@PathVariable(value="id") long id) throws DestaqueNotFoundException {
 		destaqueService.deleteDestaque(id);
 	}
 	
 	@PutMapping("/destaques")
-	@ApiOperation(value="Atualiza um usuario")
+	@ApiOperation(value="Atualiza um destaque")
 	public ResponseEntity<Destaque> updateDestaque(@RequestBody Destaque destaque) throws DestaqueNotValidException {
 		return ResponseEntity.ok(destaqueService.updateDestaque(destaque));
 	}

@@ -44,7 +44,7 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/funcionarios")
-	@ApiOperation(value="Adiciona um usuario a lista")
+	@ApiOperation(value="Adiciona um funcionario a lista")
 	public ResponseEntity<?> createUser(@RequestBody Funcionario funcionario) throws FuncionarioNotValidException {
 		return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.addFuncionario(funcionario)); 
 	}
