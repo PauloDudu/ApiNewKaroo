@@ -21,6 +21,8 @@ public class Assunto {
 	private String nomeCliente;
 	
 	private String conteudo;
+	
+	private boolean atendido;
 
 	public long getId() {
 		return id;
@@ -62,10 +64,18 @@ public class Assunto {
 		this.conteudo = conteudo;
 	}
 	
+	public boolean isAtendido() {
+		return atendido;
+	}
+
+	public void setAtendido(boolean atendido) {
+		this.atendido = atendido;
+	}
+
 	public boolean ehvalido() {
 		boolean ehValido = false;
 		
-		if((this.codigoCliente.isEmpty() || this.email.isEmpty() || this.nomeCliente.isEmpty() || !this.conteudo.isEmpty())) {
+		if((this.codigoCliente.isEmpty() || this.email.isEmpty() || this.nomeCliente.isEmpty() || !this.conteudo.isEmpty()) || !this.atendido) {
 			ehValido = true;
 		}
 		

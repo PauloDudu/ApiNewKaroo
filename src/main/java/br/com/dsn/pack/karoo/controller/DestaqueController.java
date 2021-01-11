@@ -33,7 +33,7 @@ public class DestaqueController {
 	
 	@GetMapping("/destaques")
 	@ApiOperation(value="Retorna uma lista de usuarios")
-	public ResponseEntity<List<Destaque>> listUsers() throws DestaqueNotFoundException {
+	public ResponseEntity<List<Destaque>> listDestaques() throws DestaqueNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getAll());
 	}
 	
@@ -45,19 +45,19 @@ public class DestaqueController {
 	
 	@PostMapping("/destaques")
 	@ApiOperation(value="Adiciona um usuario a lista")
-	public ResponseEntity<?> createUser(@RequestBody Destaque destaque) throws DestaqueNotValidException {
+	public ResponseEntity<?> createDestaque(@RequestBody Destaque destaque) throws DestaqueNotValidException {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.addDestaque(destaque)); 
 	}
 	
 	@DeleteMapping("/destaques/{id}")
 	@ApiOperation(value="Deleta um usuario da lista")
-	public void deleteUser(@PathVariable(value="id") long id) throws DestaqueNotFoundException {
+	public void deleteDestaque(@PathVariable(value="id") long id) throws DestaqueNotFoundException {
 		destaqueService.deleteDestaque(id);
 	}
 	
 	@PutMapping("/destaques")
 	@ApiOperation(value="Atualiza um usuario")
-	public ResponseEntity<Destaque> updateUser(@RequestBody Destaque destaque) throws DestaqueNotValidException {
+	public ResponseEntity<Destaque> updateDestaque(@RequestBody Destaque destaque) throws DestaqueNotValidException {
 		return ResponseEntity.ok(destaqueService.updateDestaque(destaque));
 	}
 }
