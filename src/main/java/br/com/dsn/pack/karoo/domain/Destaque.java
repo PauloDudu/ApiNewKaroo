@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name="destaque")
 public class Destaque implements Serializable {
@@ -18,8 +20,10 @@ public class Destaque implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;	
 	
+	@NotNull
 	private String descricao;
 	
+	@NotNull
 	private String link;
 
 	public long getId() {
@@ -44,15 +48,5 @@ public class Destaque implements Serializable {
 
 	public void setLink(String link) {
 		this.link = link;
-	}
-	
-	public boolean ehvalido() {
-		boolean ehValido = false;
-		
-		if(this.descricao != null || this.link != null) {
-			ehValido = true;
-		}
-		
-		return ehValido;
 	}
 }

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dsn.pack.karoo.domain.Destaque;
 import br.com.dsn.pack.karoo.exceptions.DestaqueNotFoundException;
-import br.com.dsn.pack.karoo.exceptions.DestaqueNotValidException;
 import br.com.dsn.pack.karoo.service.DestaqueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,25 +38,25 @@ public class DestaqueController {
 	
 	@GetMapping("/destaques/{id}")
 	@ApiOperation(value="Retorna um destaque pelo id passado na rota")
-	public ResponseEntity<Destaque> getById(@PathVariable(value="id") long id) throws DestaqueNotFoundException {
+	public ResponseEntity<Destaque> getById(@PathVariable(value="id") long id)	{
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getById(id));
 	}
 	
 	@PostMapping("/destaques")
 	@ApiOperation(value="Adiciona um destaque a lista")
-	public ResponseEntity<?> createDestaque(@RequestBody Destaque destaque) throws DestaqueNotValidException {
+	public ResponseEntity<?> createDestaque(@RequestBody Destaque destaque)	{
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.addDestaque(destaque)); 
 	}
 	
 	@DeleteMapping("/destaques/{id}")
 	@ApiOperation(value="Deleta um destaque da lista")
-	public void deleteDestaque(@PathVariable(value="id") long id) throws DestaqueNotFoundException {
+	public void deleteDestaque(@PathVariable(value="id") long id)	{
 		destaqueService.deleteDestaque(id);
 	}
 	
 	@PutMapping("/destaques")
 	@ApiOperation(value="Atualiza um destaque")
-	public ResponseEntity<Destaque> updateDestaque(@RequestBody Destaque destaque) throws DestaqueNotValidException {
+	public ResponseEntity<Destaque> updateDestaque(@RequestBody Destaque destaque)	{
 		return ResponseEntity.ok(destaqueService.updateDestaque(destaque));
 	}
 }

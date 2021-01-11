@@ -59,7 +59,7 @@ public class Funcionario implements Serializable {
 	public boolean ehvalido() {
 		boolean ehValido = false;
 		
-		if(this.email != null || this.nome != null || this.senha != null) {
+		if(!this.email.isEmpty() || !this.nome.isEmpty() || !this.senha.isEmpty()) {
 			ehValido = true;
 		}
 		

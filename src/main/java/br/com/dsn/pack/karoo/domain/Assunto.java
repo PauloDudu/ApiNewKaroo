@@ -71,15 +71,4 @@ public class Assunto {
 	public void setAtendido(boolean atendido) {
 		this.atendido = atendido;
 	}
-
-	public boolean ehvalido() {
-		boolean ehValido = false;
-		
-		if(this.codigoCliente != null || this.email != null || this.nomeCliente != null || this.conteudo != null) {
-			ehValido = true;
-		}
-		
-		return ehValido;
-	}
-
 }

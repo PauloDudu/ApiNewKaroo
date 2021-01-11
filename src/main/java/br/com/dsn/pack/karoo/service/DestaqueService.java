@@ -8,65 +8,46 @@ import org.springframework.stereotype.Service;
 
 import br.com.dsn.pack.karoo.domain.Destaque;
 import br.com.dsn.pack.karoo.exceptions.DestaqueNotFoundException;
-import br.com.dsn.pack.karoo.exceptions.DestaqueNotValidException;
 import br.com.dsn.pack.karoo.repository.DestaqueRepository;
 
 @Service
 public class DestaqueService {
-	
+
 	@Autowired
 	DestaqueRepository destaqueRepository;
-	
+
 	public List<Destaque> getAll() throws DestaqueNotFoundException {
-		
+
 		List<Destaque> destaques = destaqueRepository.findAll();
-		
-		if(!destaques.isEmpty()) {
+
+		if (!destaques.isEmpty()) {
 			return destaques;
 		} else {
 			throw new DestaqueNotFoundException();
 		}
 	}
-	
-	public Destaque getById(Long id) throws DestaqueNotFoundException {
-		
+
+	public Destaque getById(Long id) {
+
 		Optional<Destaque> destaque = destaqueRepository.findById(id);
-		
-		if(destaque.isPresent()) {
-			return destaque.get();
-		} else {
-			throw new DestaqueNotFoundException(id);
-		}
+
+		return destaque.get();
 	}
-	
-	public String addDestaque(Destaque destaque) throws DestaqueNotValidException {
-		
-		if(destaque.ehvalido()) {
-			destaqueRepository.save(destaque);
-			return "Destaque criado com sucesso!";
-		} else {
-			throw new DestaqueNotValidException(destaque.getId());
-		}
+
+	public String addDestaque(Destaque destaque) {
+
+		destaqueRepository.save(destaque);
+		return "Destaque criado com sucesso!";
 	}
-	
-	public Destaque updateDestaque(Destaque destaque) throws DestaqueNotValidException {
-		
-		if(destaque.ehvalido()) {
-			return destaqueRepository.save(destaque);
-		} else {
-			throw new DestaqueNotValidException(destaque.getId());
-		}
+
+	public Destaque updateDestaque(Destaque destaque) {
+
+		return destaqueRepository.save(destaque);
 	}
-	
-	public String deleteDestaque(long id) throws DestaqueNotFoundException {
-		
-		Optional<Destaque> destaque = destaqueRepository.findById(id);
-		
-		if(destaque.isPresent()) {
-			destaqueRepository.deleteById(id);
-			return "Destaque removido com sucesso";
-		} else {
-			throw new DestaqueNotFoundException(id);
-		}
+
+	public String deleteDestaque(long id) {
+
+		destaqueRepository.deleteById(id);
+		return "Destaque removido com sucesso";
 	}
 }

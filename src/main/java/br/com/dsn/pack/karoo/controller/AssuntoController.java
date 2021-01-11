@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dsn.pack.karoo.domain.Assunto;
 import br.com.dsn.pack.karoo.exceptions.AssuntoNotFoundException;
-import br.com.dsn.pack.karoo.exceptions.AssuntoNotValidException;
 import br.com.dsn.pack.karoo.service.AssuntoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,25 +38,25 @@ public class AssuntoController {
 	
 	@GetMapping("/assuntos/{id}")
 	@ApiOperation(value="Retorna um assunto pelo id passado na rota")
-	public ResponseEntity<Assunto> getById(@PathVariable(value="id") long id) throws AssuntoNotFoundException {
+	public ResponseEntity<Assunto> getById(@PathVariable(value="id") long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(assuntoService.getById(id));
 	}
 	
 	@PostMapping("/assuntos")
 	@ApiOperation(value="Adiciona um assunto a lista")
-	public ResponseEntity<String> createUser(@RequestBody Assunto assunto) throws AssuntoNotValidException {
+	public ResponseEntity<String> createUser(@RequestBody Assunto assunto) {
 		return ResponseEntity.status(HttpStatus.OK).body(assuntoService.addAssunto(assunto)); 
 	}
 	
 	@DeleteMapping("/assunto/{id}")
 	@ApiOperation(value="Deleta um assunto da lista")
-	public void deleteUser(@PathVariable(value="id") long id) throws AssuntoNotFoundException {
+	public void deleteUser(@PathVariable(value="id") long id) {
 		assuntoService.deleteAssunto(id);
 	}
 	
 	@PutMapping("/assunto")
 	@ApiOperation(value="Atualiza um assunto")
-	public ResponseEntity<Assunto> updateUser(@RequestBody Assunto assunto) throws AssuntoNotValidException {
+	public ResponseEntity<Assunto> updateUser(@RequestBody Assunto assunto) {
 		return ResponseEntity.ok(assuntoService.updateAssunto(assunto));
 	}
 }
