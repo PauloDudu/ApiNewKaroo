@@ -39,11 +39,11 @@ public class FuncionarioService {
 		}
 	}
 	
-	public String addFuncionario(Funcionario funcionario) throws FuncionarioNotValidException {
+	public Funcionario addFuncionario(Funcionario funcionario) throws FuncionarioNotValidException {
 		
 		if(funcionario.ehvalido()) {
 			funcionarioRepository.save(funcionario);
-			return "Funcionario criado com sucesso!";
+			return funcionario;
 		} else {
 			throw new FuncionarioNotValidException(funcionario.getId());
 		}
@@ -52,6 +52,7 @@ public class FuncionarioService {
 	public Funcionario updateFuncionario(Funcionario funcionario) throws FuncionarioNotValidException {
 		
 		if(funcionario.ehvalido()) {
+	
 			return funcionarioRepository.save(funcionario);
 		} else {
 			throw new FuncionarioNotValidException(funcionario.getId());

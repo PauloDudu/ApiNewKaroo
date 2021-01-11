@@ -32,7 +32,7 @@ public class ExceptionController {
 	
 	@ExceptionHandler(DestaqueNotValidException.class)
 	public ResponseEntity<String> tratarDestaqueNotFound(DestaqueNotValidException exception) {
-		String msg = "Destaque nao encontrado!";
+		String msg = "Destaque invalido";
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.header(K_KAROOERRO_MSG, msg)
@@ -55,7 +55,7 @@ public class ExceptionController {
 	
 	@ExceptionHandler(FuncionarioNotValidException.class)
 	public ResponseEntity<String> tratarFuncionarioNotFound(FuncionarioNotValidException exception) {
-		String msg = "Funcionario nao encontrado!";
+		String msg = "Funcionario invalido!";
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.header(K_KAROOERRO_MSG, msg)
@@ -78,7 +78,7 @@ public class ExceptionController {
 	
 	@ExceptionHandler(AssuntoNotValidException.class)
 	public ResponseEntity<String> tratarFuncionarioNotFound(AssuntoNotValidException exception) {
-		String msg = "Assunto nao encontrado!";
+		String msg = "Assunto invalido!";
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.header(K_KAROOERRO_MSG, msg)

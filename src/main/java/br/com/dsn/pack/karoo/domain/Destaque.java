@@ -49,7 +49,7 @@ public class Destaque implements Serializable {
 	public boolean ehvalido() {
 		boolean ehValido = false;
 		
-		if((this.descricao.isEmpty() || this.link.isEmpty())) {
+		if(this.descricao != null || this.link != null) {
 			ehValido = true;
 		}
 		

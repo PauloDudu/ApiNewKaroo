@@ -75,7 +75,7 @@ public class Assunto {
 	public boolean ehvalido() {
 		boolean ehValido = false;
 		
-		if((this.codigoCliente.isEmpty() || this.email.isEmpty() || this.nomeCliente.isEmpty() || !this.conteudo.isEmpty()) || !this.atendido) {
+		if(this.codigoCliente != null || this.email != null || this.nomeCliente != null || this.conteudo != null) {
 			ehValido = true;
 		}
 		
