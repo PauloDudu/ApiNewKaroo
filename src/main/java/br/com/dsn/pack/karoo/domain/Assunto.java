@@ -22,7 +22,7 @@ public class Assunto {
 	
 	private String conteudo;
 	
-	private boolean atendido;
+	private boolean atendido = false;
 
 	public long getId() {
 		return id;

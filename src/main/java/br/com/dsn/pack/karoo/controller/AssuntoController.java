@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dsn.pack.karoo.domain.Assunto;
-import br.com.dsn.pack.karoo.exceptions.AssuntoNotFoundException;
 import br.com.dsn.pack.karoo.service.AssuntoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +31,7 @@ public class AssuntoController {
 	
 	@GetMapping("/assuntos")
 	@ApiOperation(value="Retorna uma lista de assuntos")
-	public ResponseEntity<List<Assunto>> listUsers() throws AssuntoNotFoundException {
+	public ResponseEntity<List<Assunto>> listUsers() {
 		return ResponseEntity.status(HttpStatus.OK).body(assuntoService.getAll());
 	}
 	

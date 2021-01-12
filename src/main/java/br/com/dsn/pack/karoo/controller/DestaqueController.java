@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dsn.pack.karoo.domain.Destaque;
-import br.com.dsn.pack.karoo.exceptions.DestaqueNotFoundException;
 import br.com.dsn.pack.karoo.service.DestaqueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +31,7 @@ public class DestaqueController {
 	
 	@GetMapping("/destaques")
 	@ApiOperation(value="Retorna uma lista de destaques")
-	public ResponseEntity<List<Destaque>> listDestaques() throws DestaqueNotFoundException {
+	public ResponseEntity<List<Destaque>> listDestaques() {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getAll());
 	}
 	

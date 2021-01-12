@@ -1,13 +1,10 @@
 package br.com.dsn.pack.karoo.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.dsn.pack.karoo.domain.Assunto;
-import br.com.dsn.pack.karoo.exceptions.AssuntoNotFoundException;
 import br.com.dsn.pack.karoo.repository.AssuntoRepository;
 
 @Service
@@ -16,22 +13,15 @@ public class AssuntoService {
 	@Autowired
 	AssuntoRepository assuntoRepository;
 
-	public List<Assunto> getAll() throws AssuntoNotFoundException {
+	public List<Assunto> getAll() {
 
-		List<Assunto> assuntos = assuntoRepository.findAll();
+		return assuntoRepository.findAll();
 
-		if (!assuntos.isEmpty()) {
-			return assuntos;
-		} else {
-			throw new AssuntoNotFoundException();
-		}
 	}
 
 	public Assunto getById(Long id) {
 
-		Optional<Assunto> assunto = assuntoRepository.findById(id);
-
-		return assunto.get();
+		return assuntoRepository.findById(id).get();
 	}
 
 	public String addAssunto(Assunto assunto) {

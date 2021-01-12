@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dsn.pack.karoo.domain.Funcionario;
-import br.com.dsn.pack.karoo.exceptions.FuncionarioNotFoundException;
 import br.com.dsn.pack.karoo.service.FuncionarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +31,7 @@ public class FuncionarioController {
 	
 	@GetMapping("/funcionarios")
 	@ApiOperation(value="Retorna uma lista de funcionarios")
-	public ResponseEntity<List<Funcionario>> listFunc() throws FuncionarioNotFoundException {
+	public ResponseEntity<List<Funcionario>> listFunc() {
 		return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.getAll());
 	}
 	
