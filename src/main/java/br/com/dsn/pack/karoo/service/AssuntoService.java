@@ -27,7 +27,7 @@ public class AssuntoService {
 	public String addAssunto(Assunto assunto) {
 
 		assuntoRepository.save(assunto);
-		return "Destaque criado com sucesso!";
+		return "Assunto criado com sucesso!";
 	}
 
 	public Assunto updateAssunto(Assunto assunto) {
@@ -38,6 +38,6 @@ public class AssuntoService {
 	public String deleteAssunto(long id) {
 
 		assuntoRepository.deleteById(id);
-		return "Destaque removido com sucesso";
+		return "Assunto removido com sucesso";
 	}
 }
