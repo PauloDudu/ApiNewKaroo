@@ -65,4 +65,9 @@ public class Funcionario implements Serializable {
 		
 		return ehValido;
 	}
+
+	@Override
+	public String toString() {
+		return "{id: " + id + ", email: " + email + ", nome: " + nome + ", senha: " + senha + "}";
+	}
 }
