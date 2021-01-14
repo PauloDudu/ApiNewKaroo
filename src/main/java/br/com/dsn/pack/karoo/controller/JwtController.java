@@ -1,6 +1,9 @@
 package br.com.dsn.pack.karoo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import br.com.dsn.pack.karoo.domain.Funcionario;
 import br.com.dsn.pack.karoo.service.FuncionarioService;
 import br.com.dsn.pack.karoo.service.JwtService;
 import io.swagger.annotations.Api;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/karoo")
@@ -28,17 +32,27 @@ public class JwtController {
 	JwtService jwtService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> login(@RequestBody Funcionario funcionario) throws JsonProcessingException {
-
-		String token = jwtService.generateToken(funcionario);
+	public ResponseEntity<String> login(@RequestBody Funcionario funcionario) throws JsonProcessingException, NotFoundException {
 		
+		Funcionario funcFound = null;
+		String token = "";
+		List<Funcionario> listFunc = funcionarioService.getAll();
+		
+		if(funcionario == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionario não encontrado");
+		
+		for (Funcionario func : listFunc) {
+			if(func.getEmail().equalsIgnoreCase(funcionario.getEmail()) && func.getSenha().equals(funcionario.getSenha())) {
+				funcFound = func; 
+				token = jwtService.generateToken(funcFound);
+			} else {
+				throw new NotFoundException("Funcionario nao encontrado");
+			}
+		}
 		return ResponseEntity.ok(token);
 	}
 	
 	@PostMapping("/login/verify")
-	public ResponseEntity<String> verifyLogin(@RequestBody String token) {
-		
+	public ResponseEntity<Boolean> verifyLogin(@RequestBody String token) {
 		return ResponseEntity.ok(jwtService.decodeToken(token));
-		
 	}
 }

@@ -1,11 +1,11 @@
 package br.com.dsn.pack.karoo.controller;	
 
-import org.springframework.http.HttpStatus;	
-import org.springframework.http.ResponseEntity;	
-import org.springframework.web.bind.annotation.ExceptionHandler;	
-import org.springframework.web.bind.annotation.RestControllerAdvice;	
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
+import io.jsonwebtoken.ExpiredJwtException;
 import javassist.NotFoundException;	
 
 @RestControllerAdvice	
@@ -15,7 +15,7 @@ public class ExceptionController {
 	private static final String K_KAROOERRO_MSG = "k-karooerro-msg";	
 	private static final String K_KAROOERRO_VALUE = "k-karooerro-value";	
 
-	@ExceptionHandler()	
+	@ExceptionHandler(NotFoundException.class)	
 	public ResponseEntity<String> tratarDestaqueNotFound(NotFoundException exception) {	
 		String msg = "Item não encontrado!";	
 
@@ -25,4 +25,15 @@ public class ExceptionController {
 				.header(K_KAROOERRO_VALUE, exception.getMessage())	
 				.body(msg);	
 	}	
+	
+	@ExceptionHandler(ExpiredJwtException.class)	
+	public ResponseEntity<String> tratarExpiredJwtException(ExpiredJwtException exception) {	
+		String msg = "Token espirado";	
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)	
+				.header(K_KAROOERRO_MSG, msg)	
+				.header(K_KAROOERRO_CODE, "EXPIRED")	
+				.header(K_KAROOERRO_VALUE, exception.getMessage())	
+				.body(msg);	
+	}
 } 

@@ -12,16 +12,21 @@ import br.com.dsn.pack.karoo.domain.Funcionario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import javassist.NotFoundException;
 
 @Service
 public class JwtService {
 
     @Autowired
     private ObjectMapper mapper;
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24;
+    private static final long EXPIRATION_TIME = 60000 * 60 * 24;
     private String key = "jsonwebtoken secret";
 
-    public String generateToken(Funcionario funcionario) throws JsonProcessingException {
+    public String generateToken(Funcionario funcionario) throws JsonProcessingException, NotFoundException {
+    	
+    	if(funcionario == null) {
+    		throw new NotFoundException("Funcionario nao encontrado");
+    	}
         return Jwts.builder()
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setSubject(mapper.writeValueAsString(funcionario))
@@ -30,13 +35,16 @@ public class JwtService {
                 .compact();
     }
 
-    public String decodeToken(String token) {
+    public Boolean decodeToken(String token) {
 
         Claims claim = Jwts.parser()
                 .setSigningKey(key)
                 .parseClaimsJws(token)
                 .getBody();
-
-        return claim.getSubject();
+        
+        if(claim.getExpiration().before(new Date(System.currentTimeMillis()))) {
+        	return false;
+        }
+        return true;
     }
 }
