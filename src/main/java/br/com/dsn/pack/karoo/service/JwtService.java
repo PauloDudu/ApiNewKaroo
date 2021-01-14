@@ -43,6 +43,7 @@ public class JwtService {
                 .getBody();
         
         if(claim.getExpiration().before(new Date(System.currentTimeMillis()))) {
+        	System.out.println(claim);
         	return false;
         }
         return true;
