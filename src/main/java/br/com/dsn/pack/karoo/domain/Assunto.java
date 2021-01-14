@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name="assunto")
 public class Assunto {
@@ -14,12 +16,16 @@ public class Assunto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;	
 	
+	@NotNull
 	private String codigoCliente;
 	
+	@NotNull
 	private String email;
 	
+	@NotNull
 	private String nomeCliente;
 	
+	@NotNull
 	private String conteudo;
 	
 	private boolean atendido = false;

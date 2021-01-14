@@ -19,6 +19,7 @@ import br.com.dsn.pack.karoo.domain.Funcionario;
 import br.com.dsn.pack.karoo.service.FuncionarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/karoo")
@@ -31,13 +32,13 @@ public class FuncionarioController {
 	
 	@GetMapping("/funcionarios")
 	@ApiOperation(value="Retorna uma lista de funcionarios")
-	public ResponseEntity<List<Funcionario>> listFunc() {
+	public ResponseEntity<List<Funcionario>> listFunc() throws NotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.getAll());
 	}
 	
 	@GetMapping("/funcionarios/{id}")
 	@ApiOperation(value="Retorna um funcionario pelo id passado na rota")
-	public ResponseEntity<Funcionario> getFuncById(@PathVariable(value="id") long id) {
+	public ResponseEntity<Funcionario> getFuncById(@PathVariable(value="id") long id) throws NotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(funcionarioService.getById(id));
 	}
 	

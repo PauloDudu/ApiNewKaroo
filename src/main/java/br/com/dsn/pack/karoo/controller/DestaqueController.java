@@ -19,6 +19,7 @@ import br.com.dsn.pack.karoo.domain.Destaque;
 import br.com.dsn.pack.karoo.service.DestaqueService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/karoo")
@@ -31,13 +32,13 @@ public class DestaqueController {
 	
 	@GetMapping("/destaques")
 	@ApiOperation(value="Retorna uma lista de destaques")
-	public ResponseEntity<List<Destaque>> listDestaques() {
+	public ResponseEntity<List<Destaque>> listDestaques() throws NotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getAll());
 	}
 	
 	@GetMapping("/destaques/{id}")
 	@ApiOperation(value="Retorna um destaque pelo id passado na rota")
-	public ResponseEntity<Destaque> getById(@PathVariable(value="id") long id)	{
+	public ResponseEntity<Destaque> getById(@PathVariable(value="id") long id) throws NotFoundException	{
 		return ResponseEntity.status(HttpStatus.OK).body(destaqueService.getById(id));
 	}
 	

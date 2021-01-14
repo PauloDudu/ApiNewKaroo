@@ -1,11 +1,14 @@
 package br.com.dsn.pack.karoo.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.dsn.pack.karoo.domain.Destaque;
 import br.com.dsn.pack.karoo.repository.DestaqueRepository;
+import javassist.NotFoundException;
 
 @Service
 public class DestaqueService {
@@ -18,9 +21,14 @@ public class DestaqueService {
 		return destaqueRepository.findAll();
 	}
 
-	public Destaque getById(Long id) {
-
-		return destaqueRepository.findById(id).get();
+	public Destaque getById(Long id) throws NotFoundException {
+		
+		Optional<Destaque> dest = destaqueRepository.findById(id);
+		
+		if(dest.isEmpty()) {
+			throw new NotFoundException("Destaque nao encontrado");
+		}
+		return dest.get();
 	}
 
 	public String addDestaque(Destaque destaque) {

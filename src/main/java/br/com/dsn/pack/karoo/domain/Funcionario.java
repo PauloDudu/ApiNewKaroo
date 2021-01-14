@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name="funcionario")
 public class Funcionario implements Serializable {
@@ -18,11 +20,16 @@ public class Funcionario implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;	
 	
-	private String email;	
+	@NotNull
+	private String email;
 	
+	@NotNull
 	private String nome;
 	
+	@NotNull
 	private String senha;
+	
+	private Boolean isAdmin = false;
 
 	public long getId() {
 		return id;
@@ -56,6 +63,14 @@ public class Funcionario implements Serializable {
 		this.senha = senha;
 	}
 	
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 	public boolean ehvalido() {
 		boolean ehValido = false;
 		
@@ -69,5 +84,6 @@ public class Funcionario implements Serializable {
 	@Override
 	public String toString() {
 		return "{id: " + id + ", email: " + email + ", nome: " + nome + ", senha: " + senha + "}";
+		
 	}
 }

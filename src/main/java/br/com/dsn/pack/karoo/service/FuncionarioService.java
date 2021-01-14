@@ -1,12 +1,14 @@
 package br.com.dsn.pack.karoo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.dsn.pack.karoo.domain.Funcionario;
 import br.com.dsn.pack.karoo.repository.FuncionarioRepository;
+import javassist.NotFoundException;
 
 @Service
 public class FuncionarioService {
@@ -20,9 +22,14 @@ public class FuncionarioService {
 
 	}
 
-	public Funcionario getById(Long id) {
+	public Funcionario getById(Long id) throws NotFoundException {
+		
+		Optional<Funcionario> func = funcionarioRepository.findById(id);
 
-		return funcionarioRepository.findById(id).get();
+		if(func.isEmpty()) {
+			throw new NotFoundException("Funcionario nao encontrado");
+		}
+		return func.get();
 	}
 
 	public Funcionario addFuncionario(Funcionario funcionario) {
