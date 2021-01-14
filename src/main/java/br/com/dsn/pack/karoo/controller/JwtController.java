@@ -17,6 +17,7 @@ import br.com.dsn.pack.karoo.domain.Funcionario;
 import br.com.dsn.pack.karoo.service.FuncionarioService;
 import br.com.dsn.pack.karoo.service.JwtService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import javassist.NotFoundException;
 
 @RestController
@@ -32,6 +33,7 @@ public class JwtController {
 	JwtService jwtService;
 	
 	@PostMapping("/login")
+	@ApiOperation(value="Cria um json web token com o email e a senha")
 	public ResponseEntity<String> login(@RequestBody Funcionario funcionario) throws JsonProcessingException, NotFoundException {
 		
 		Funcionario funcFound = null;
@@ -52,6 +54,7 @@ public class JwtController {
 	}
 	
 	@PostMapping("/login/verify")
+	@ApiOperation(value="Decodifica e valida o json web token ")
 	public ResponseEntity<Boolean> verifyLogin(@RequestBody String token) {
 		return ResponseEntity.ok(jwtService.decodeToken(token));
 	}
