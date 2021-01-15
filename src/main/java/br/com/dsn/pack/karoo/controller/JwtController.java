@@ -43,19 +43,25 @@ public class JwtController {
 		if(funcionario == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionario não encontrado");
 		
 		for (Funcionario func : listFunc) {
-			if(func.getEmail().equalsIgnoreCase(funcionario.getEmail()) && func.getSenha().equals(funcionario.getSenha())) {
+			if(func.getEmail().equals(funcionario.getEmail()) && func.getSenha().equals(funcionario.getSenha())) {
 				funcFound = func; 
 				token = jwtService.generateToken(funcFound);
-			} else {
-				throw new NotFoundException("Funcionario nao encontrado");
+				break;
 			}
 		}
+
 		return ResponseEntity.ok(token);
 	}
 	
 	@PostMapping("/login/verify")
 	@ApiOperation(value="Decodifica e valida o json web token ")
 	public ResponseEntity<Boolean> verifyLogin(@RequestBody String token) {
+		return ResponseEntity.ok(jwtService.verifyValidToken(token));
+	}
+	
+	@PostMapping("/admin/verify")
+	@ApiOperation(value="Verifica pelo token se o usuario e admin ou não")
+	public ResponseEntity<String> returnFuncByToken(@RequestBody String token) {
 		return ResponseEntity.ok(jwtService.decodeToken(token));
 	}
 }

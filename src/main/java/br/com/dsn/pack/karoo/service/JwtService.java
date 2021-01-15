@@ -31,11 +31,11 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setSubject(mapper.writeValueAsString(funcionario))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS256, key)
+                .signWith(SignatureAlgorithm.HS512, key)
                 .compact();
     }
 
-    public Boolean decodeToken(String token) {
+    public Boolean verifyValidToken(String token) {
 
         Claims claim = Jwts.parser()
                 .setSigningKey(key)
@@ -46,5 +46,15 @@ public class JwtService {
         	return false;
         }
         return true;
+    }
+    
+    public String decodeToken(String token) {
+
+        Claims claim = Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claim.getSubject();
     }
 }
